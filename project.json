@@ -3,7 +3,10 @@
   "description": "HR Use Case | Generate Offer Letters",
   "main": "Main.xaml",
   "dependencies": {
+    "Google.Apis.Gmail.v1": "[1.51.0.2251]",
+    "Uipath.Email.Validation.Activities": "[1.0.0]",
     "UiPath.Excel.Activities": "[2.11.4]",
+    "UiPath.Mail.Activities": "[1.12.3]",
     "UiPath.System.Activities": "[21.10.2]",
     "UiPath.Testing.Activities": "[1.4.3]",
     "UiPath.UIAutomation.Activities": "[21.10.3]",

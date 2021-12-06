@@ -88,7 +88,6 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
       <AssemblyReference>EmailValidation</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="632,2709" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -371,7 +370,7 @@
             </If.Else>
           </If>
           <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="OfferLetterAccount" DisplayName="Get Credential" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[mailPW]" Username="[mailUname]" />
-          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[in_Config(&quot;EmailBody&quot;).ToString]" DisplayName="Send SMTP Mail Message" Email="[mailUname]" EnableSSL="True" From="rikkyjoshy12@gmail.com" sap:VirtualizedContainerService.HintSize="484,148" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="HR Manager" Password="[mailPW.ToString]" Port="587" SecureConnection="Auto" SecurePassword="[mailPW]" Server="smtp.gmail.com" Subject="[in_Config(&quot;EmailSubject&quot;).ToString]" To="[str_Email]">
+          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[in_Config(&quot;EmailBody&quot;).ToString]" DisplayName="Send SMTP Mail Message" Email="[mailUname]" EnableSSL="True" From="rikkyjoshy12@gmail.com" sap:VirtualizedContainerService.HintSize="484,148" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="HR Manager" Password="[mailPW.ToString]" Port="465" SecureConnection="SslOnConnect" SecurePassword="[mailPW]" Server="smtp.gmail.com" Subject="[in_Config(&quot;EmailSubject&quot;).ToString]" To="[str_Email]">
             <ui:SendMail.Files>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                 <InArgument x:TypeArguments="x:String">[str_pdfpath]</InArgument>

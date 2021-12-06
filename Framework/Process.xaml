@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1240,2774</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1240,2991</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="39">
@@ -88,9 +88,10 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
       <AssemblyReference>EmailValidation</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="632,2709" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="632,2926" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_fName" />
       <Variable x:TypeArguments="x:String" Name="str_lName" />
@@ -220,7 +221,7 @@
       </TryCatch.Catches>
     </TryCatch>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="590,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Processing the offer for:  &quot;+str_fullName]" />
-    <TryCatch DisplayName="Try Catch - Generating Offer" sap:VirtualizedContainerService.HintSize="590,1093" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+    <TryCatch DisplayName="Try Catch - Generating Offer" sap:VirtualizedContainerService.HintSize="590,1300" sap2010:WorkflowViewState.IdRef="TryCatch_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -228,20 +229,20 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Sequence - Replace vaules in word" sap:VirtualizedContainerService.HintSize="552,866" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Sequence - Replace vaules in word" sap:VirtualizedContainerService.HintSize="552,1073" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <p:WordApplicationScope AutoSave="False" CreateNewFile="False" DisplayName="Word Application Scope - Template" FilePath="[in_Config(&quot;WordPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="510,774" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" ReadOnly="True">
+          <p:WordApplicationScope AutoSave="False" CreateNewFile="False" DisplayName="Word Application Scope - Template" FilePath="[in_Config(&quot;WordPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="510,981" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
             <p:WordApplicationScope.Body>
               <ActivityAction x:TypeArguments="ui:WordDocument">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,665" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,872" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -288,6 +289,7 @@
                       <InArgument x:TypeArguments="x:String">[Path.Combine(in_Config("PDFPath").ToString,str_fullName+".pdf")]</InArgument>
                     </Assign.Value>
                   </Assign>
+                  <p:WordSaveAs DisplayName="Save Document As docx" FilePath="[Path.Combine(in_Config(&quot;PDFPath&quot;).ToString,str_fullName+&quot;.docx&quot;)]" sap:VirtualizedContainerService.HintSize="434,167" sap2010:WorkflowViewState.IdRef="WordSaveAs_1" />
                   <p:WordExportToPdf DisplayName="Save Document as PDF - save offer letter" FilePath="[str_pdfpath]" sap:VirtualizedContainerService.HintSize="434,109" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -334,7 +336,7 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <TryCatch DisplayName="Try Catch - sending mail" sap:VirtualizedContainerService.HintSize="590,1004" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+    <TryCatch DisplayName="Try Catch - sending mail" sap:VirtualizedContainerService.HintSize="590,1014" sap2010:WorkflowViewState.IdRef="TryCatch_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -342,7 +344,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Sequence - sending mail" sap:VirtualizedContainerService.HintSize="526,755" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence DisplayName="Sequence - sending mail" sap:VirtualizedContainerService.HintSize="526,765" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="mailUname" />
             <Variable x:TypeArguments="ss:SecureString" Name="mailPW" />
@@ -355,7 +357,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <uev:UIPathEmailValidationActivities DisplayName="UI path email validation activities" EmailAddress="[str_Email]" sap:VirtualizedContainerService.HintSize="484,79" sap2010:WorkflowViewState.IdRef="UIPathEmailValidationActivities_1" IsvalidEmail="[isvalidEmail]" />
-          <If Condition="[isvalidEmail = False]" DisplayName="If - valid email or not" sap:VirtualizedContainerService.HintSize="484,237" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[isvalidEmail = False]" DisplayName="If - valid email or not" sap:VirtualizedContainerService.HintSize="484,247" sap2010:WorkflowViewState.IdRef="If_2">
             <If.Then>
               <Throw DisplayName="Throw - BE" Exception="[new BusinessRuleException(&quot;Email is not valid&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
             </If.Then>

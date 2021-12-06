@@ -9,7 +9,7 @@
   <sap:VirtualizedContainerService.HintSize>1240,2991</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="39">
+    <scg:List x:TypeArguments="x:String" Capacity="78">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -49,6 +49,7 @@
       <x:String>UiPath.Mail.SMTP.Activities</x:String>
       <x:String>UiPath.Mail.Activities</x:String>
       <x:String>UIPath.Email.Validation</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -357,7 +358,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <uev:UIPathEmailValidationActivities DisplayName="UI path email validation activities" EmailAddress="[str_Email]" sap:VirtualizedContainerService.HintSize="484,79" sap2010:WorkflowViewState.IdRef="UIPathEmailValidationActivities_1" IsvalidEmail="[isvalidEmail]" />
-          <If Condition="[isvalidEmail = False]" DisplayName="If - valid email or not" sap:VirtualizedContainerService.HintSize="484,247" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[isvalidEmail = False or str_Email = &quot;&quot;]" DisplayName="If - valid email or not" sap:VirtualizedContainerService.HintSize="484,247" sap2010:WorkflowViewState.IdRef="If_2">
             <If.Then>
               <Throw DisplayName="Throw - BE" Exception="[new BusinessRuleException(&quot;Email is not valid&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
             </If.Then>
@@ -371,8 +372,8 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="OfferLetterAccount" DisplayName="Get Credential" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[mailPW]" Username="[mailUname]" />
-          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[in_Config(&quot;EmailBody&quot;).ToString]" DisplayName="Send SMTP Mail Message" Email="[mailUname]" EnableSSL="True" From="rikkyjoshy12@gmail.com" sap:VirtualizedContainerService.HintSize="484,148" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="HR Manager" Password="[mailPW.ToString]" Port="465" SecureConnection="SslOnConnect" SecurePassword="[mailPW]" Server="smtp.gmail.com" Subject="[in_Config(&quot;EmailSubject&quot;).ToString]" To="[str_Email]">
+          <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="GMAccount" DisplayName="Get Credential" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[mailPW]" Username="[mailUname]" />
+          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" Body="[in_Config(&quot;EmailBody&quot;).ToString]" DisplayName="Send SMTP Mail Message" Email="[mailUname]" EnableSSL="True" From="[mailUname]" sap:VirtualizedContainerService.HintSize="484,148" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Name="HR Manager" Password="[mailPW.ToString]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[in_Config(&quot;EmailSubject&quot;).ToString]" To="[str_Email]">
             <ui:SendMail.Files>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                 <InArgument x:TypeArguments="x:String">[str_pdfpath]</InArgument>

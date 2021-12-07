@@ -358,7 +358,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <uev:UIPathEmailValidationActivities DisplayName="UI path email validation activities" EmailAddress="[str_Email]" sap:VirtualizedContainerService.HintSize="484,79" sap2010:WorkflowViewState.IdRef="UIPathEmailValidationActivities_1" IsvalidEmail="[isvalidEmail]" />
-          <If Condition="[isvalidEmail = False or str_Email = &quot;&quot;]" DisplayName="If - valid email or not" sap:VirtualizedContainerService.HintSize="484,247" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[isvalidEmail = False or String.IsNullOrWhiteSpace(str_Email)]" DisplayName="If - valid email or not" sap:VirtualizedContainerService.HintSize="484,247" sap2010:WorkflowViewState.IdRef="If_2">
             <If.Then>
               <Throw DisplayName="Throw - BE" Exception="[new BusinessRuleException(&quot;Email is not valid&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
             </If.Then>

@@ -32,7 +32,7 @@
  + ./Framework/*CloseAllApplications* - Logs out and closes applications used throughout the process
 
 
-### For New Project ###
+### Generate Offer Letters For HR use case  ###
 
 1. Check the Config.xlsx file and add/customize any required fields and values
 2. Implement InitiAllApplications.xaml and CloseAllApplicatoins.xaml workflows, linking them in the Config.xlsx fields
